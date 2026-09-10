@@ -6,8 +6,17 @@
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.light-theme {
   background: #f2f3f7;
   color: #333;
+}
+
+body.dark-theme {
+  background: #0f172a;
+  color: #e5e7eb;
 }
 
 a {
@@ -15,6 +24,40 @@ a {
   color: inherit;
 }
 
+button,
+input {
+  font: inherit;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d9d9d9;
+  background: rgba(255, 255, 255, 0.08);
+  color: #333;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.dark-theme .theme-toggle {
+  border-color: #475569;
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: #a2306b;
+}
+
+.theme-toggle-wrap {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+}
 
 .login-page {
   min-height: 100vh;
@@ -62,11 +105,20 @@ a {
   z-index: 2;
 }
 
+body.dark-theme .login-card {
+  background: #1e293b;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
 .login-card h2 {
   text-align: center;
   font-size: 1.2rem;
   color: #2b2350;
   margin-bottom: 20px;
+}
+
+body.dark-theme .login-card h2 {
+  color: #f8fafc;
 }
 
 /* Social login row */
@@ -90,6 +142,11 @@ a {
   cursor: pointer;
 }
 
+body.dark-theme .social-btn {
+  background: #0f172a;
+  border-color: #475569;
+}
+
 .social-btn.facebook { color: #1877f2; }
 .social-btn.google { color: #ea4335; }
 
@@ -103,6 +160,15 @@ a {
   border-radius: 8px;
   font-size: 0.95rem;
   outline: none;
+  background: #fff;
+  color: #333;
+}
+
+body.dark-theme .login-card input[type="text"],
+body.dark-theme .login-card input[type="password"] {
+  background: #0f172a;
+  border-color: #475569;
+  color: #f8fafc;
 }
 
 .login-card input:focus {
@@ -143,6 +209,12 @@ a {
   font-size: 0.8rem;
   color: #777;
   margin-bottom: 14px;
+}
+
+body.dark-theme .options-row,
+body.dark-theme .login-footer,
+body.dark-theme .login-footer a {
+  color: #cbd5e1;
 }
 
 .options-row label {
@@ -302,14 +374,26 @@ a {
   gap: 10px;
 }
 
+body.dark-theme .topbar {
+  background: #111827;
+}
+
 .topbar .crumbs {
   font-size: 0.8rem;
   color: #999;
 }
 
+body.dark-theme .topbar .crumbs {
+  color: #cbd5e1;
+}
+
 .topbar h2 {
   font-size: 1.2rem;
   color: #2b2350;
+}
+
+body.dark-theme .topbar h2 {
+  color: #f8fafc;
 }
 
 .topbar-right {
@@ -324,6 +408,14 @@ a {
   border: 1px solid #e2c9db;
   outline: none;
   font-size: 0.85rem;
+  background: #fff;
+  color: #333;
+}
+
+body.dark-theme .topbar-right input {
+  background: #0f172a;
+  border-color: #475569;
+  color: #f8fafc;
 }
 
 .topbar-right .logout {
@@ -333,6 +425,10 @@ a {
   align-items: center;
   gap: 5px;
   cursor: pointer;
+}
+
+body.dark-theme .topbar-right .logout {
+  color: #e5e7eb;
 }
 
 /* Content area */
@@ -345,6 +441,10 @@ a {
   color: #2b2350;
   font-size: 1.3rem;
   margin-bottom: 20px;
+}
+
+body.dark-theme .content > h1 {
+  color: #f8fafc;
 }
 
 /* Grid of dashboard cards */
@@ -369,6 +469,11 @@ a {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
+body.dark-theme .card {
+  background: #1e293b;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -379,6 +484,10 @@ a {
 .card-header h3 {
   font-size: 1rem;
   color: #333;
+}
+
+body.dark-theme .card-header h3 {
+  color: #f8fafc;
 }
 
 /* Donut chart made from conic-gradient (pure CSS, no library) */
@@ -421,6 +530,10 @@ a {
   font-size: 0.85rem;
 }
 
+body.dark-theme .legend-item {
+  border-bottom-color: #334155;
+}
+
 .legend-item:last-child {
   border-bottom: none;
 }
@@ -452,8 +565,17 @@ a {
   font-weight: bold;
 }
 
+body.dark-theme .more-btn {
+  background: #312e81;
+  color: #e0e7ff;
+}
+
 .more-btn:hover {
   background: #ddd3ee;
+}
+
+body.dark-theme .more-btn:hover {
+  background: #4338ca;
 }
 
 /* Health index card */
@@ -461,6 +583,10 @@ a {
   font-size: 2.2rem;
   font-weight: bold;
   color: #2b2350;
+}
+
+body.dark-theme .health-value {
+  color: #f8fafc;
 }
 
 .health-value .up {
@@ -492,6 +618,12 @@ table th {
   color: #999;
   font-weight: normal;
   border-bottom: 1px solid #eee;
+}
+
+body.dark-theme table th,
+body.dark-theme table td {
+  color: #e5e7eb;
+  border-bottom-color: #334155;
 }
 
 table td {
@@ -530,9 +662,19 @@ table td {
   border-top: 1px solid #eee;
 }
 
+body.dark-theme .site-footer {
+  background: #0f172a;
+  border-top-color: #334155;
+  color: #cbd5e1;
+}
+
 .site-footer .links a {
   margin-left: 18px;
   color: #777;
+}
+
+body.dark-theme .site-footer .links a {
+  color: #cbd5e1;
 }
 
 .site-footer .links a:hover {
