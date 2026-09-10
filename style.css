@@ -1,0 +1,554 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f2f3f7;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The colorful wavy header on top */
+.login-hero {
+  background: linear-gradient(120deg, #3b2a6b, #6a2f8a, #a2306b, #2f7fb0);
+  background-size: 300% 300%;
+  animation: wave-move 12s ease infinite;
+  color: #fff;
+  text-align: center;
+  padding: 70px 20px 130px;
+  position: relative;
+}
+
+@keyframes wave-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.login-hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+.login-hero p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* The white card that holds the sign-in form */
+.login-card {
+  background: #fff;
+  width: 90%;
+  max-width: 380px;
+  margin: -110px auto 40px;
+  border-radius: 14px;
+  padding: 30px 30px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 2;
+}
+
+.login-card h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #2b2350;
+  margin-bottom: 20px;
+}
+
+/* Social login row */
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #e2e2e2;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.social-btn.facebook { color: #1877f2; }
+.social-btn.google { color: #ea4335; }
+
+/* Text inputs */
+.login-card input[type="text"],
+.login-card input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.login-card input:focus {
+  border-color: #a2306b;
+}
+
+/* Sign in button — pink to purple gradient */
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.btn-signin {
+  background: linear-gradient(90deg, #d6006e, #7a1fa2);
+}
+
+.btn-signup {
+  background: linear-gradient(90deg, #1e9be0, #1b5fd0);
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+/* Row with "forgot password" and "remember me" */
+.options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 14px;
+}
+
+.options-row label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.divider {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin: 10px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #e2e2e2;
+}
+
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+.error-msg {
+  background: #ffe3e3;
+  color: #b30000;
+  font-size: 0.8rem;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  display: none;
+}
+
+.error-msg.show {
+  display: block;
+}
+
+/* Footer links under the card */
+.login-footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.login-footer a {
+  margin: 0 10px;
+  color: #555;
+}
+
+.login-footer a:hover {
+  color: #7a1fa2;
+}
+
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  width: 230px;
+  background: #241a3d;
+  color: #cfc9e0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 20px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.05rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-logo .logo-badge {
+  background: #fff;
+  color: #7a1fa2;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.sidebar nav {
+  flex: 1;
+  padding: 10px 0;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 22px;
+  font-size: 0.9rem;
+  color: #cfc9e0;
+  border-left: 3px solid transparent;
+}
+
+.sidebar nav a .icon {
+  width: 18px;
+  text-align: center;
+}
+
+.sidebar nav a:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar nav a.active {
+  background: #d6006e;
+  color: #fff;
+  border-left-color: #ffb3d9;
+}
+
+.sidebar-help {
+  margin: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #d6006e, #7a1fa2);
+  color: #fff;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* --- Main area --- */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Top bar */
+.topbar {
+  background: #fdf1f6;
+  padding: 16px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.topbar .crumbs {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.topbar h2 {
+  font-size: 1.2rem;
+  color: #2b2350;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.topbar-right input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #e2c9db;
+  outline: none;
+  font-size: 0.85rem;
+}
+
+.topbar-right .logout {
+  font-size: 0.85rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* Content area */
+.content {
+  padding: 30px;
+  flex: 1;
+}
+
+.content > h1 {
+  color: #2b2350;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+/* Grid of dashboard cards */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.grid > * {
+  width: calc(50% - 11px);
+}
+
+.grid > *:last-child {
+  width: 100%;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.card-header h3 {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Donut chart made from conic-gradient (pure CSS, no library) */
+.donut-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.donut {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut::after {
+  content: "";
+  width: 60%;
+  height: 60%;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.legend {
+  flex: 1;
+  min-width: 180px;
+}
+
+.legend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.85rem;
+}
+
+.legend-item:last-child {
+  border-bottom: none;
+}
+
+.legend-item .name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.more-btn {
+  margin-top: 14px;
+  background: #ece6f5;
+  color: #4b3b73;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.more-btn:hover {
+  background: #ddd3ee;
+}
+
+/* Health index card */
+.health-value {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #2b2350;
+}
+
+.health-value .up {
+  font-size: 1rem;
+  color: #1fae5c;
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+.health-chart {
+  margin-top: 16px;
+  height: 90px;
+}
+
+/* Doctors table */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+table th {
+  text-align: left;
+  padding: 10px 8px;
+  color: #999;
+  font-weight: normal;
+  border-bottom: 1px solid #eee;
+}
+
+table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.doc-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-flag {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #eee;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+/* Site footer at bottom of dashboard */
+.site-footer {
+  background: #fff;
+  padding: 18px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: #999;
+  border-top: 1px solid #eee;
+}
+
+.site-footer .links a {
+  margin-left: 18px;
+  color: #777;
+}
+
+.site-footer .links a:hover {
+  color: #7a1fa2;
+}
+
+/* Responsive: stack sidebar on small screens */
+@media (max-width: 800px) {
+  .dashboard {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
