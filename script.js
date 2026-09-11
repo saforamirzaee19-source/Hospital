@@ -1,3 +1,4 @@
+// Login Form 
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
@@ -19,6 +20,7 @@ if (loginForm) {
   });
 }
 
+// Dark Mode 
 const themeButtons = document.querySelectorAll(".theme-toggle");
 
 function applyTheme(theme) {
