@@ -1,5 +1,17 @@
 // Login Form 
 const loginForm = document.getElementById("loginForm");
+const passwordInput = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+
+if (passwordInput && togglePassword) {
+  togglePassword.addEventListener("click", function () {
+    const isPasswordHidden = passwordInput.type === "password";
+    passwordInput.type = isPasswordHidden ? "text" : "password";
+    togglePassword.textContent = isPasswordHidden ? "🙈" : "👁";
+    togglePassword.setAttribute("aria-label", isPasswordHidden ? "Hide password" : "Show password");
+    togglePassword.setAttribute("title", isPasswordHidden ? "Hide password" : "Show password");
+  });
+}
 
 if (loginForm) {
   loginForm.addEventListener("submit", function (event) {
@@ -11,6 +23,12 @@ if (loginForm) {
 
     if (username === "" || password === "") {
       errorMsg.textContent = "Please fill in both fields.";
+      errorMsg.classList.add("show");
+      return;
+    }
+
+    if (password.length < 8) {
+      errorMsg.textContent = "Password must be at least 8 characters.";
       errorMsg.classList.add("show");
       return;
     }

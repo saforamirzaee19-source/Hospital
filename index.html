@@ -34,8 +34,11 @@
     <p id="errorMsg" class="error-msg"></p>
 
     <form id="loginForm">
-      <input type="text" id="username" placeholder="Email or Phone number" required>
-      <input type="password" id="password" placeholder="Please enter your password" required>
+      <input type="email" id="username" placeholder="Email or Phone number" required>
+      <div class="password-field">
+        <input type="password" id="password" placeholder="Please enter your password" required>
+        <button type="button" id="togglePassword" class="password-toggle" aria-label="Show password" title="Show password">👁</button>
+      </div>
 
       <button type="submit" class="btn btn-signin">SIGN IN</button>
 
