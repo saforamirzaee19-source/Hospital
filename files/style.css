@@ -634,32 +634,51 @@ body.dark-theme .topbar-right .logout {
 
 /* Find doctor page */
 .doctor-page {
-  padding: clamp(22px, 4vw, 42px) clamp(18px, 4vw, 48px);
-  background: #f7f8fb;
+  padding: clamp(18px, 3.5vw, 32px) clamp(18px, 4vw, 32px);
+  background: #f5f6fa;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Wavy magenta-to-blue hero, matching the app's search header */
 .find-doctor-hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: clamp(24px, 5vw, 48px);
+  padding: clamp(26px, 4.5vw, 40px) clamp(22px, 5vw, 44px) clamp(30px, 5vw, 48px);
   border-radius: 18px;
   color: #fff;
-  background: linear-gradient(120deg, #2b2350, #71305f 58%, #c94b76);
-  box-shadow: 0 14px 30px rgba(73, 38, 91, 0.2);
+  text-align: center;
+  background: linear-gradient(120deg, #c2126e, #7a1fa2 45%, #3a2bd6 78%, #1f5fd6);
+  background-size: 260% 260%;
+  animation: wave-move 14s ease infinite;
+  box-shadow: 0 14px 30px rgba(73, 38, 91, 0.22);
+}
+
+.find-doctor-hero .eyebrow {
+  color: #ffc6dd;
+  display: block;
+  margin-bottom: 6px;
 }
 
 .find-doctor-hero h1 {
-  max-width: 620px;
-  margin: 4px 0 10px;
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  line-height: 1.08;
+  margin: 4px 0 8px;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  line-height: 1.1;
 }
 
-.find-doctor-hero > div > p:last-child {
+.find-doctor-hero .hero-sub {
+  margin: 0 auto 26px;
   max-width: 560px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.98rem;
 }
 
 .eyebrow {
@@ -670,98 +689,142 @@ body.dark-theme .topbar-right .logout {
   text-transform: uppercase;
 }
 
-.find-doctor-hero .eyebrow { color: #ffc6dd; }
-
-.hero-mark {
-  display: grid;
-  width: 82px;
-  height: 82px;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.13);
-  font-size: 2.3rem;
-}
-
+/* Search bar sits directly on the hero, no floating card */
 .doctor-search-panel {
   display: grid;
-  grid-template-columns: minmax(220px, 1.35fr) minmax(180px, 1fr) auto auto;
-  gap: 14px;
-  align-items: end;
-  margin: -22px 22px 34px;
-  padding: 22px;
-  position: relative;
-  border: 1px solid #eadfe7;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(42, 35, 80, 0.1);
+  grid-template-columns: minmax(220px, 1.4fr) minmax(180px, 1fr) auto auto;
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-.search-field { display: grid; gap: 7px; }
-.search-field label { color: #4b4261; font-size: 0.78rem; font-weight: 700; }
+.search-field { display: grid; gap: 0; }
 .search-field input {
   width: 100%;
-  min-height: 46px;
-  padding: 11px 13px;
-  border: 1px solid #d9d1dc;
+  min-height: 48px;
+  padding: 11px 16px;
+  border: 1px solid transparent;
   border-radius: 8px;
   outline: none;
   color: #2b2350;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
 }
-.search-field input:focus { border-color: #d6006e; box-shadow: 0 0 0 3px rgba(214, 0, 110, 0.12); }
+.search-field input::placeholder { color: #8b8496; }
+.search-field input:focus { border-color: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35); }
+
 .btn-doctor-find {
-  min-height: 46px;
-  padding: 11px 16px;
+  min-height: 48px;
+  padding: 11px 20px;
   border: 0;
   border-radius: 8px;
-  color: #fff;
-  background: #d6006e;
   cursor: pointer;
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #0e5866;
+  background: #35d3e6;
   transition: transform 0.2s ease, filter 0.2s ease;
 }
-.btn-doctor-find:hover { filter: brightness(1.08); transform: translateY(-1px); }
-.current-button { color: #d6006e; background: #fce8f1; }
-.search-status { grid-column: 1 / -1; min-height: 1em; color: #687080; font-size: 0.82rem; }
-
-.cards-find-doctor { padding-top: 2px; }
-.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
-.section-heading h2 { margin-top: 4px; color: #2b2350; font-size: 1.55rem; }
-.service-count { color: #7b7287; font-size: 0.82rem; }
-.service-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
-.service-card { min-height: 235px; padding: 22px; border: 1px solid transparent; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
-.service-card:hover { border-color: #f0b8d1; box-shadow: 0 10px 24px rgba(42, 35, 80, 0.12); transform: translateY(-3px); }
-.service-card span { display: grid; width: 54px; height: 54px; place-items: center; margin-bottom: 20px; border-radius: 14px; background: #fff0f6; }
-.service-card img { width: 34px; height: 34px; object-fit: contain; }
-.service-card h2 { margin-bottom: 9px; color: #2b2350; font-size: 1rem; line-height: 1.3; }
-.service-card p { color: #747687; font-size: 0.86rem; line-height: 1.55; }
-.empty-services { padding: 24px 0; color: #747687; }
-body.dark-theme .doctor-page { background: #0f172a; }
-body.dark-theme .find-doctor-hero { background: linear-gradient(120deg, #251d42, #63284f 58%, #a13e61); }
-body.dark-theme .doctor-search-panel, body.dark-theme .service-card { background: #1e293b; border-color: #334155; }
-body.dark-theme .search-field label, body.dark-theme .section-heading h2, body.dark-theme .service-card h2 { color: #f8fafc; }
-body.dark-theme .search-field input { border-color: #475569; background: #0f172a; color: #f8fafc; }
-body.dark-theme .service-card p, body.dark-theme .service-count, body.dark-theme .empty-services { color: #cbd5e1; }
-body.dark-theme .current-button { color: #ffc6dd; background: #54233f; }
-
-@media (max-width: 900px) {
-  .doctor-search-panel { grid-template-columns: 1fr 1fr; margin-inline: 0; }
-  .search-field-wide { grid-column: 1 / -1; }
-  .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.btn-doctor-find:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.btn-doctor-find:disabled { opacity: 0.7; cursor: progress; }
+.current-button { background: #35d3e6; }
+.search-button { background: #2ad0e4; }
+.search-status {
+  grid-column: 1 / -1;
+  min-height: 1em;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.82rem;
 }
 
-@media (max-width: 560px) {
-  .find-doctor-hero { align-items: flex-start; }
-  .hero-mark { display: none; }
-  .doctor-search-panel { grid-template-columns: 1fr; padding: 17px; }
+/* Shared white panel used by both the services and specialty sections */
+.doctor-panel {
+  margin-top: 22px;
+  padding: clamp(20px, 3.5vw, 34px);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 3px 14px rgba(42, 35, 80, 0.06);
+}
+
+.cards-find-doctor, .doctors-specialty { padding-top: 2px; }
+
+.section-heading { text-align: center; margin-bottom: 20px; }
+.section-heading h2 { color: #2b2350; font-size: 1.5rem; }
+.service-count { color: #7b7287; font-size: 0.82rem; }
+
+.service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.service-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid #e7e3ec;
+  border-radius: 12px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.service-card:hover { border-color: #f0b8d1; box-shadow: 0 10px 24px rgba(42, 35, 80, 0.1); transform: translateY(-2px); }
+.service-icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 14px;
+  background: #fff0f6;
+}
+.service-icon img { width: 30px; height: 30px; object-fit: contain; }
+.service-text { flex: 1; min-width: 0; }
+.service-text h3 { margin-bottom: 4px; color: #2b2350; font-size: 1rem; line-height: 1.3; }
+.service-text p { color: #4b4a7a; font-size: 0.88rem; line-height: 1.5; }
+.row-chevron { flex: 0 0 auto; color: #b7b2c4; font-size: 1.1rem; }
+.empty-services { padding: 24px 0; text-align: center; color: #747687; }
+
+/* Specialty list */
+.header-specialty { text-align: center; margin-bottom: 20px; }
+.header-specialty h2 { color: #2b2350; font-size: 1.5rem; margin-bottom: 6px; }
+.header-specialty p { color: #6a6580; font-size: 0.92rem; }
+
+.specialty-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.specialty {
+  border: 1px solid #e7e3ec;
+  border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.specialty:hover { border-color: #f0b8d1; box-shadow: 0 8px 18px rgba(42, 35, 80, 0.08); transform: translateY(-1px); }
+.specialty a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #2b2350;
+  font-size: 0.98rem;
+}
+.specialty a span { color: #b7b2c4; font-size: 1.1rem; }
+
+body.dark-theme .doctor-page { background: #0f172a; }
+body.dark-theme .doctor-panel { background: #1e293b; box-shadow: none; }
+body.dark-theme .service-card, body.dark-theme .specialty { background: #16213a; border-color: #334155; }
+body.dark-theme .section-heading h2, body.dark-theme .service-text h3,
+body.dark-theme .header-specialty h2, body.dark-theme .specialty a { color: #f8fafc; }
+body.dark-theme .service-text p, body.dark-theme .service-count,
+body.dark-theme .empty-services, body.dark-theme .header-specialty p { color: #cbd5e1; }
+
+@media (max-width: 900px) {
+  .doctor-search-panel { grid-template-columns: 1fr 1fr; }
+  .search-field-wide { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+  .find-doctor-hero { text-align: center; }
+  .doctor-search-panel { grid-template-columns: 1fr; }
   .search-field-wide, .search-status { grid-column: auto; }
   .search-button, .current-button { width: 100%; }
-  .service-grid { grid-template-columns: 1fr; }
-  .section-heading { align-items: flex-start; flex-direction: column; gap: 7px; }
+  .service-grid, .specialty-grid { grid-template-columns: 1fr; }
+  .doctor-panel { margin-top: 16px; padding: 18px; }
 }
 
 body.dark-theme .content > h1 {
