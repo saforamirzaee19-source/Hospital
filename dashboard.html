@@ -5,44 +5,64 @@
   <title>MyPatientHUB - Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet Map -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
 </head>
 <body>
 
-<div class="dashboard">
+<div class="dashboard-layout">
+
+  <!-- Backdrop shown behind the sidebar on small screens -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
   <!--  SIDEBAR  -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <span class="logo-badge">M</span>
-      MyPatientHUB
+      <span class="logo-text">MyPatientHUB</span>
     </div>
 
     <nav>
-      <a href="dashboard.html" class="active"><span class="icon">🏠</span> Dashboard</a>
-      <a href="#"><span class="icon">📅</span> Appointments</a>
-      <a href="#"><span class="icon">🩺</span> Find Doctor</a>
-      <a href="#"><span class="icon">🏥</span> Find Clinic</a>
-      <a href="#"><span class="icon">💬</span> Chat</a>
-      <a href="#"><span class="icon">🛒</span> Find MarketPlace</a>
-      <a href="#"><span class="icon">💊</span> Find Pharmacy</a>
-      <a href="#"><span class="icon">👪</span> My Dependents</a>
-      <a href="#"><span class="icon">👤</span> My Account</a>
-      <a href="#"><span class="icon">⚙️</span> Settings</a>
+      <a href="dashboard.html" class="active"><span class="icon">🏠</span><span class="label">Dashboard</span></a>
+      <a href="#"><span class="icon">📅</span><span class="label">Appointments</span></a>
+      <a href="find-doctor.html"><span class="icon">🩺</span><span class="label">Find Doctor</span></a>
+      <a href="find-clinic.html"><span class="icon">🏥</span><span class="label">Find Clinic</span></a>
+      <a href="#"><span class="icon">💬</span><span class="label">Chat</span></a>
+      <a href="#"><span class="icon">🛒</span><span class="label">Find MarketPlace</span></a>
+      <a href="#"><span class="icon">💊</span><span class="label">Find Pharmacy</span></a>
+      <a href="#"><span class="icon">👪</span><span class="label">My Dependents</span></a>
+      <a href="#"><span class="icon">👤</span><span class="label">My Account</span></a>
+      <a href="#"><span class="icon">⚙️</span><span class="label">Settings</span></a>
     </nav>
 
     <div class="sidebar-help">
       Need help? <br> Ask us anything!
     </div>
+    <button class="sidebar-help-mini" type="button" aria-label="Need help? Ask us anything!" title="Need help? Ask us anything!">?</button>
   </aside>
 
-  <!-- ============ MAIN AREA ============ -->
+  <!-- MAIN AREA  -->
   <div class="main">
 
     <!-- Top bar -->
     <div class="topbar">
-      <div>
-        <div class="crumbs">🏠 / Dashboard</div>
-        <h2>Dashboard</h2>
+      <div class="topbar-left">
+        <div>
+          <div class="crumbs">🏠 / Dashboard</div>
+          <h2>Dashboard</h2>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle sidebar" aria-expanded="true" aria-controls="sidebar">
+          <span class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
       </div>
       <div class="topbar-right">
         <input type="text" placeholder="Type here...">
@@ -137,14 +157,14 @@
             <span>ⓘ</span>
           </div>
           <div class="donut-row">
-            <div class="donut" style="background: conic-gradient(#e6007e 0% 89%, #241a3d 89% 100%);"></div>
+            <div class="donut" style="background: conic-gradient(#e6007e 0% 89%, #a72553 89% 100%);"></div>
             <div class="legend">
               <div class="legend-item">
                 <span class="name"><span class="dot" style="background:#e6007e;"></span>Food Panda</span>
                 <span>25%</span>
               </div>
               <div class="legend-item">
-                <span class="name"><span class="dot" style="background:#241a3d;"></span>Grab Food</span>
+                <span class="name"><span class="dot" style="background:#c01562;"></span>Grab Food</span>
                 <span>3%</span>
               </div>
             </div>
@@ -213,6 +233,123 @@
 
       </div>
     </div>
+    <main class="dashboard-grid">
+
+        <!-- Wellness Chart -->
+        <section class="card wellness-card">
+
+            <div class="card-header">
+                <h2>Chronic wellness Tracker</h2>
+                <span class="menu">☰</span>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="wellnessChart"></canvas>
+            </div>
+
+        </section>
+
+
+        <!-- Appointment Chart -->
+        <section class="card appointment-chart-card">
+
+            <div class="card-header">
+                <h2>Appointment</h2>
+                <span class="menu">☰</span>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="appointmentChart"></canvas>
+            </div>
+
+        </section>
+
+
+        <!-- Map -->
+        <section class="map-card">
+
+            <div class="map-buttons">
+                <button class="active">Map</button>
+                <button>Satellite</button>
+            </div>
+
+            <button class="fullscreen">⛶</button>
+
+            <div id="map"></div>
+
+        </section>
+
+
+        <!-- Previous Appointments -->
+        <section class="card previous-card">
+
+            <h2>Previous Appointments</h2>
+
+            <div class="appointment">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    alt="Doctor"
+                >
+
+                <div class="doctor-info">
+                    <h3>Dr.Mustafa</h3>
+                    <p>Emergency</p>
+                </div>
+
+                <div class="appointment-date">
+                    <span>Tuesday, April 5</span>
+                    <b>⋮</b>
+                </div>
+
+            </div>
+
+
+            <div class="appointment">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/45.jpg"
+                    alt="Doctor"
+                >
+
+                <div class="doctor-info">
+                    <h3>DR. KHIRULLAH</h3>
+                    <p>consultant</p>
+                </div>
+
+                <div class="appointment-date">
+                    <span>Friday, November 2</span>
+                    <b>⋮</b>
+                </div>
+
+            </div>
+
+
+            <div class="appointment">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/68.jpg"
+                    alt="Doctor"
+                >
+
+                <div class="doctor-info">
+                    <h3>Dr. Ahmad</h3>
+                    <p>Specialist</p>
+                </div>
+
+                <div class="appointment-date">
+                    <span>Monday, January 15</span>
+                    <b>⋮</b>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    
 
     <!-- Site footer -->
     <footer class="site-footer">
@@ -227,6 +364,8 @@
   </div>
 </div>
 
+<!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

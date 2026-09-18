@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyPatientHUB - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet Map -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+  <!-- Backdrop shown behind the sidebar on small screens -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!--  SIDEBAR  -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-badge">M</span>
+      <span class="logo-text">MyPatientHUB</span>
+    </div>
+
+    <nav>
+      <a href="dashboard.html"><span class="icon">🏠</span><span class="label">Dashboard</span></a>
+      <a href="#"><span class="icon">📅</span><span class="label">Appointments</span></a>
+      <a href="find-doctor.html" class="active" aria-current="page"><span class="icon">🩺</span><span class="label">Find Doctor</span></a>
+      <a href="#"><span class="icon">🏥</span><span class="label">Find Clinic</span></a>
+      <a href="#"><span class="icon">💬</span><span class="label">Chat</span></a>
+      <a href="#"><span class="icon">🛒</span><span class="label">Find MarketPlace</span></a>
+      <a href="#"><span class="icon">💊</span><span class="label">Find Pharmacy</span></a>
+      <a href="#"><span class="icon">👪</span><span class="label">My Dependents</span></a>
+      <a href="#"><span class="icon">👤</span><span class="label">My Account</span></a>
+      <a href="#"><span class="icon">⚙️</span><span class="label">Settings</span></a>
+    </nav>
+
+    <div class="sidebar-help">
+      Need help? <br> Ask us anything!
+    </div>
+    <button class="sidebar-help-mini" type="button" aria-label="Need help? Ask us anything!" title="Need help? Ask us anything!">?</button>
+  </aside>
+
+  <!-- MAIN AREA  -->
+  <div class="main">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="crumbs">🏠 / Find Doctor</div>
+          <h2>Find Doctor</h2>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle sidebar" aria-expanded="true" aria-controls="sidebar">
+          <span class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+      <div class="topbar-right">
+        <input type="text" placeholder="Type here...">
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="toggle-icon">🌙</span>
+          <span class="toggle-text">Dark</span>
+        </button>
+        <span class="logout" onclick="window.location.href='index.html'">🔒 Log out</span>
+        <span>⚙️</span>
+        <span>🔔</span>
+      </div>
+    </div>
+
+    <!-- Page content -->
+    <main class="content doctor-page">
+      <section class="find-doctor-hero" aria-labelledby="findDoctorTitle">
+        <p class="eyebrow">Care that fits your life</p>
+        <h1 id="findDoctorTitle">Find a Doctor</h1>
+        <p class="hero-sub">Search Doctors and schedule an appointment</p>
+
+        <form class="doctor-search-panel" id="doctorSearchForm">
+          <div class="search-field search-field-wide">
+            <label class="sr-only" for="doctorSearch">Search a doctor by name or specialty</label>
+            <input id="doctorSearch" type="search" placeholder="Search a doctor by name, specialty" autocomplete="off">
+          </div>
+          <div class="search-field">
+            <label class="sr-only" for="locationSearch">Zip code or neighborhood</label>
+            <input id="locationSearch" type="text" placeholder="Zip Code or Neigborhood" autocomplete="postal-code">
+          </div>
+          <button class="btn-doctor-find current-button" id="useLocation" type="button">Current</button>
+          <button class="btn-doctor-find search-button" type="submit">Search</button>
+          <p class="search-status" id="doctorSearchStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="cards-find-doctor" aria-labelledby="servicesTitle">
+        <div class="doctor-panel">
+          <div class="section-heading">
+            <h2 id="servicesTitle">Special Services</h2>
+            <span class="service-count sr-only" id="serviceCount" aria-live="polite">4 services</span>
+          </div>
+          <div class="service-grid" id="serviceGrid">
+            <article class="card service-card" data-search="primary care internal medicine wellness family doctor">
+              <span class="service-icon"><img src="images/heart.webp" alt=""></span>
+              <span class="service-text">
+                <h3>Primary Care and Internal MD</h3>
+                <p>our Doctors Partner with you to help you to reach your welness</p>
+              </span>
+              <span class="row-chevron" aria-hidden="true">⌄</span>
+            </article>
+            <article class="card service-card" data-search="emergency care adults children urgent hospital">
+              <span class="service-icon"><img src="images/heart-hand.webp" alt=""></span>
+              <span class="service-text">
+                <h3>Emergency Care</h3>
+                <p>we provide emergency care for adults and children</p>
+              </span>
+              <span class="row-chevron" aria-hidden="true">⌄</span>
+            </article>
+            <article class="card service-card" data-search="imaging services xray mri scan diagnostic">
+              <span class="service-icon"><img src="images/services.webp" alt=""></span>
+              <span class="service-text">
+                <h3>Imaging Services</h3>
+                <p>From Xray to MR scan we offer...</p>
+              </span>
+              <span class="row-chevron" aria-hidden="true">⌄</span>
+            </article>
+            <article class="card service-card" data-search="urgent care walk in quick treatment">
+              <span class="service-icon"><img src="images/urgent.avif" alt=""></span>
+              <span class="service-text">
+                <h3>Urgent Care</h3>
+                <p>we offer urgent care for none ...</p>
+              </span>
+              <span class="row-chevron" aria-hidden="true">⌄</span>
+            </article>
+          </div>
+          <p class="empty-services" id="emptyServices" hidden>No services match that search. Try a different specialty or service.</p>
+        </div>
+      </section>
+
+      <section class="doctors-specialty">
+        <div class="doctor-panel">
+          <div class="header-specialty">
+            <h2>Find Doctors By Specialty</h2>
+            <p>Select a Specialty to View all Doctors and schedule an Appointment</p>
+          </div>
+          <div class="specialty-grid">
+            <div class="specialty"><a href="#">Anesthesiology <span>⌄</span></a></div>
+            <div class="specialty"><a href="#">Dermatology <span>⌄</span></a></div>
+            <div class="specialty"><a href="#">Emergency medicine <span>⌄</span></a></div>
+            <div class="specialty"><a href="#">Neurology <span>⌄</span></a></div>
+            <div class="specialty"><a href="#">Consultation <span>⌄</span></a></div>
+            <div class="specialty"><a href="#">Ophthalmology <span>⌄</span></a></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+
+    
+
+    <!-- Site footer -->
+    <footer class="site-footer">
+      <div>© 2026, made with ❤ by <strong>MyPiHUB</strong> for a better web.</div>
+      <div class="links">
+        <a href="#">MyPatientHUB</a>
+        <a href="#">About Us</a>
+        <a href="#">Blog</a>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+<!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
