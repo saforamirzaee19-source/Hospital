@@ -31,7 +31,7 @@
       <a href="dashboard.html"><span class="icon">🏠</span><span class="label">Dashboard</span></a>
       <a href="#"><span class="icon">📅</span><span class="label">Appointments</span></a>
       <a href="find-doctor.html" class="active" aria-current="page"><span class="icon">🩺</span><span class="label">Find Doctor</span></a>
-      <a href="#"><span class="icon">🏥</span><span class="label">Find Clinic</span></a>
+      <a href="find-clinic.html"><span class="icon">🏥</span><span class="label">Find Clinic</span></a>
       <a href="#"><span class="icon">💬</span><span class="label">Chat</span></a>
       <a href="#"><span class="icon">🛒</span><span class="label">Find MarketPlace</span></a>
       <a href="#"><span class="icon">💊</span><span class="label">Find Pharmacy</span></a>
@@ -80,11 +80,16 @@
     <main class="content doctor-page">
       <section class="find-doctor-hero" aria-labelledby="findDoctorTitle">
         <div>
-          <p class="eyebrow">Care that fits your life</p>
+          <p class="eyebrow">Your care, your way</p>
           <h1 id="findDoctorTitle">Find a doctor near you</h1>
-          <p>Search trusted specialties and services, then take the next step toward an appointment.</p>
+          <p>Compare trusted specialists, check availability, and find the right care for your next visit.</p>
+          <div class="hero-highlights" aria-label="Find doctor benefits">
+            <span><strong>250+</strong> specialists</span>
+            <span><strong>4.9/5</strong> patient rating</span>
+            <span><strong>Same-day</strong> options</span>
+          </div>
         </div>
-        <span class="hero-mark" aria-hidden="true">🩺</span>
+        <div class="hero-mark" aria-hidden="true"><span>✚</span><small>Care starts here</small></div>
       </section>
 
       <form class="doctor-search-panel" id="doctorSearchForm">
@@ -96,8 +101,8 @@
           <label for="locationSearch">Where?</label>
           <input id="locationSearch" type="text" placeholder="Zip code or neighborhood" autocomplete="postal-code">
         </div>
-        <button class="btn-doctor-find search-button" type="submit">Search doctors</button>
-        <button class="btn-doctor-find current-button" id="useLocation" type="button">Use my location</button>
+        <button class="btn-doctor-find search-button" type="submit"><span aria-hidden="true">⌕</span> Search doctors</button>
+        <button class="btn-doctor-find current-button" id="useLocation" type="button"><span aria-hidden="true">⌖</span> Use my location</button>
         <p class="search-status" id="doctorSearchStatus" role="status" aria-live="polite"></p>
       </form>
 
@@ -111,42 +116,61 @@
         </div>
         <div class="service-grid" id="serviceGrid">
         <article class="card service-card" data-search="primary care internal medicine wellness family doctor">
-            <span><img src="images/heart.webp" alt="Heart"></span>
+            <a href="find-clinic.html">
+              <span><img src="images/heart.webp" alt="Heart"></span>
             <h2>Primary Care and Internal MD</h2>
-            <p>Our Doctors Partner with you to help you to reach your welness</p>
+            <p>Our doctors partner with you to support your long-term wellness.</p>
+            </a>
         </article>
         <article class="card service-card" data-search="emergency care adults children urgent hospital">
-            <span><img src="images/heart-hand.webp" alt="Emergency"></span>
+           <a href="find-clinic.html"> <span><img src="images/heart-hand.webp" alt="Emergency"></span>
             <h2>Emergency Care</h2>
             <p>We provide emergency care for adults and children</p>
+            </a>
         </article>
         <article class="card service-card" data-search="imaging services xray mri scan diagnostic">
-            <span><img src="images/services.webp" alt="Imaging"></span>
+           <a href="find-clinic.html"> <span><img src="images/services.webp" alt="Imaging"></span>
             <h2>Imaging Services</h2>
-            <p>From Xray ro MR scan we offer...
+            <p>From X-rays to MRI scans, our imaging team is here to help.
               </p>
+            </a>
         </article>
         <article class="card service-card" data-search="urgent care walk in quick treatment">
-            <span><img src="images/urgent.avif" alt="Urgent"></span>
+           <a href="find-clinic.html"> <span><img src="images/urgent.avif" alt="Urgent"></span>
             <h2>Urgent Care</h2>
-            <p>We offer urgent care for none...</p>
+            <p>Walk-in care for everyday illnesses and minor injuries.</p>
+            </a>
         </article>
         </div>
         <p class="empty-services" id="emptyServices" hidden>No services match that search. Try a different specialty or service.</p>
       </section>
 
+      <section class="doctor-results" aria-labelledby="doctorResultsTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Recommended for you</p>
+            <h2 id="doctorResultsTitle">Available specialists</h2>
+          </div>
+          <span class="service-count" id="doctorResultCount">4 doctors</span>
+        </div>
+        <div class="doctor-result-grid" id="doctorResultGrid"></div>
+        <p class="empty-services" id="emptyDoctors" hidden>No doctors match that search. Try another specialty or location.</p>
+      </section>
 
       <section class="doctors-specialty">
         <div class="header-specialty">
-          <h2>Doctors by Specialty</h2>
-          <p>Select a Specialty to View all Doctors and schedules an Appointment</p>
+          <p class="eyebrow">Browse care</p>
+          <h2>Doctors by specialty</h2>
+          <p>Select a specialty to explore doctors and available appointment times.</p>
         </div>
-        <div class="specialty"><a href="#">Anesthesiology <span>∨</span></a></div>
-        <div class="specialty"><a href="#">Dermatology <span>∨</span></a></div>
-        <div class="specialty"><a href="#">Emergency medicine <span>∨</span></a></div>
-        <div class="specialty"><a href="#">Neurology <span>∨</span></a></div>
-        <div class="specialty"><a href="#">Consultation <span>∨</span></a></div>
-        <div class="specialty"><a href="#">Ophthalmology <span>∨</span></a></div>
+        <div class="specialty-list">
+          <button class="specialty" type="button" data-specialty="Anesthesiology">Anesthesiology <span>↗</span></button>
+          <button class="specialty" type="button" data-specialty="Dermatology">Dermatology <span>↗</span></button>
+          <button class="specialty" type="button" data-specialty="Emergency medicine">Emergency medicine <span>↗</span></button>
+          <button class="specialty" type="button" data-specialty="Neurology">Neurology <span>↗</span></button>
+          <button class="specialty" type="button" data-specialty="Consultation">Consultation <span>↗</span></button>
+          <button class="specialty" type="button" data-specialty="Ophthalmology">Ophthalmology <span>↗</span></button>
+        </div>
       </section>
 
 
