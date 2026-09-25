@@ -1,3 +1,6 @@
+// Auto-wrapped version of the original script.js so it can run inside a React useEffect.
+// Logic is unchanged from the original file; only the outer function wrapper was added.
+export default function initLegacyScript() {
 // Login Form 
 const loginForm = document.getElementById("loginForm");
 const passwordInput = document.getElementById("password");
@@ -34,7 +37,7 @@ if (loginForm) {
     }
 
     errorMsg.classList.remove("show");
-    window.location.href = "dashboard.html";
+    window.location.href = "/dashboard"; // was "dashboard.html" in the original multi-page site
   });
 }
 
@@ -722,4 +725,5 @@ if (clinicMapElement && window.L) {
   document.getElementById("streetMapButton").addEventListener("click", () => { clinicMap.removeLayer(satelliteLayer); streetLayer.addTo(clinicMap); document.getElementById("streetMapButton").classList.add("active"); document.getElementById("satelliteMapButton").classList.remove("active"); });
   document.getElementById("satelliteMapButton").addEventListener("click", () => { clinicMap.removeLayer(streetLayer); satelliteLayer.addTo(clinicMap); document.getElementById("satelliteMapButton").classList.add("active"); document.getElementById("streetMapButton").classList.remove("active"); });
   document.getElementById("clinicFullscreen").addEventListener("click", () => clinicMapElement.requestFullscreen?.());
+}
 }

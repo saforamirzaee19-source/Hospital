@@ -1,70 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>MyPatientHUB - Sign In</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="login-page">
-
-  <!-- Top colorful banner -->
-  <header class="login-hero">
-    <div class="theme-toggle-wrap">
-      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
-        <span class="toggle-icon">🌙</span>
-        <span class="toggle-text">Dark</span>
-      </button>
-    </div>
-    <h1>Welcome to MyPatientHUB!</h1>
-    <p>We provide smart healthcare services in your hands.</p>
-  </header>
-
-  <!-- Sign in card -->
-  <main class="login-card">
-    <h2>Sign in to MyPatientHUB</h2>
-
-    <!-- Social login buttons (just for show) -->
-    <div class="social-row">
-      <button class="social-btn facebook" title="Sign in with Facebook">f</button>
-      <button class="social-btn google" title="Sign in with Google">G</button>
-    </div>
-
-    <!-- Error message box, hidden until JS shows it -->
-    <p id="errorMsg" class="error-msg"></p>
-
-    <form id="loginForm">
-      <input type="email" id="username" placeholder="Email or Phone number" required>
-      <div class="password-field">
-        <input type="password" id="password" placeholder="Please enter your password" required>
-        <button type="button" id="togglePassword" class="password-toggle" aria-label="Show password" title="Show password">👁</button>
-      </div>
-
-      <button type="submit" class="btn btn-signin">SIGN IN</button>
-
-      <div class="options-row">
-        <a href="#">Forgot password?</a>
-        <label>
-          <input type="checkbox" id="rememberMe">
-          Remember me
-        </label>
-      </div>
-
-      <div class="divider">or</div>
-
-      <button type="button" class="btn btn-signup" onclick="alert('Sign up page not built yet!')">SIGN UP</button>
-    </form>
-  </main>
-
-  <!-- Bottom footer links -->
-  <footer class="login-footer">
-    <a href="#">Google Play Store APP</a>
-    <a href="#">App Store APP</a>
-    <a href="#">About MyPatientHUB</a>
-    <a href="#">About Us</a>
-    <a href="#">Our Blog</a>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyPatientHUB</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
